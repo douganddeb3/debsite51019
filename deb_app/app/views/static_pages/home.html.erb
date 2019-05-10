@@ -1,0 +1,123 @@
+<% provide(:title, "Home") %>
+
+<div class="row">  
+   
+
+  <div class="col-md-10"> 
+    
+    <div class="center jumbotron"> 
+      
+      <div class="debbride-pic-top" style="background-image:url(debbride.jpg); ">
+      <div class="jamesjulie-pic" style="background-image:url(jamesjulie.png); background-position: 100% 50%; " >
+          
+        
+        
+        <h1>Welcome To Your Sentimental Adventure</h1>
+        
+        <h2>
+          The Sentimental Singer! 
+           Songs They Remember, Performed With Love
+            <!--<%= image_tag("deb-right.png", :alt => "deb pic", :style => "float:right;") %>-->
+        </h2>
+        <!--<%= image_tag("charis and oregano.JPG", :alt => "deb pic", :style => "float:left; border-radius: 50%;") %>-->
+        </div></div>
+        
+    </div> 
+  </div>
+    
+    <div class="col-md-2" style="margin-top: 50px; margin-left: -40px;">
+          <%= render 'showtimes/calendar' %>
+    </div>
+</div>
+<div class="row">        
+    <div class="center jumbotron" style="height: 550px;background-image-radius: 50%;background-image: url(/deb.png); background-repeat: no-repeat;margin-top: 50px; color: white;">
+      <h1>Many Shows<%= image_tag("FourthOfJuly.jpg", :alt => "debpic", :style => "float:left; border-radius: 50%;") %> Throughout The Year!
+      <%= image_tag("MarilynMonroe.jpg", :alt => "deb pic", :style => "float:right; border-radius: 50%;") %>
+      Your Favorite Songs and Characters Selected From Your Favorite Decades
+      <%= image_tag("Elvis.jpg", :alt => "deb pic", :style => "border-radius: 50%;float:right;") %>
+      </h1>
+      <div style="margin-top: 60px;">
+      <%= image_tag("StPatricksDay.jpg", :alt => "deb pic", :style => "float:left;") %>
+      <%= image_tag("Christmas.jpg", :alt => "deb pic", :style => "float:left;") %>
+      <%= image_tag("Valentines Day.jpg", :alt => "deb pic", :style => "float:left;") %>
+      <%= image_tag("Happy Easter.jpg", :alt => "deb pic", :style => "float:left;") %>
+      </div>
+    </div>
+</div>
+<div class="row">
+    <div class="center jumbotron" style="height: 450px;"> 
+      <div class="curtain2" >
+        <div class="curtain2__wrapper">
+          <input type="checkbox" checked /> 
+                <div class="curtain2__panel curtain2__panel--left ">
+                    <div class="curtain2__panel--left-color">
+                        <h1>Click to pull&nbsp;</h1>
+                    </div>
+                </div> <!-- curtain2__panel -->
+                
+                <div class="curtain2__content">
+                  <img src="debbride.jpg" >  
+                  <h2>Welcome To Your Sentimental Journey!</h2>
+                </div>
+                
+                <div class="curtain2__panel curtain2__panel--right ">
+                    <div class="curtain2__panel--right-color">
+                        <h1>the curtain...</h1>
+                    </div> 
+                </div><!-- curtain2__panel -->
+                
+        </div><!--curtain2_wrapper-->
+      </div><!-- curtain2 -->
+    </div>
+</div>
+
+<div class="row">
+  <audio id="my-audio" src="assets/<%= @audio_files[0]  %>" >
+  <!--<a href="Tonight_Your_Mine.m4a">audiofile.m4a</a>-->
+  </audio>
+  
+  <div id="controls">
+    <span id="loading">loading</span>
+    <button id="play" style="display:none">play</button>
+    <button id="pause" style="display:none" >pause</button>
+  </div>
+  <div id="progress">
+    <div id="bar"></div>
+    <div id="bar2"></div>
+  </div>
+  
+</div>
+
+
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-3">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+      <section class="micropost_form">
+        <%= render 'shared/micropost_form' %>
+      </section>
+    
+      <div>
+        <h3>Comments</h3>
+        <%= render 'shared/feed' %>
+      </div>
+    </aside>
+    
+    
+
+<% end %>
+
+<div>
+      <ul id="audio_ul" style="color:black;">
+      <% counter = 0 %>  
+      <% @audio_files.each do |i| %>
+        <li id="song<%= counter %>" class="audio_li" data-value="<%= i %>" ><%= i[0..i.index(".") -1] %></li>
+        <% counter+= 1 %>  
+      <% end %>
+      </ul>
+</div>

@@ -1,0 +1,107 @@
+<% provide(:title, 'Date') %>
+<% provide(:button_text, 'Book Your Show') %>
+
+<%= form_with(model: showtime, local: true) do |form| %>
+  <% if showtime.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(showtime.errors.count, "error") %> prohibited this showtime from being saved:</h2>
+
+      <ul>
+      <% showtime.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row" >
+  <% if !@times_display.empty? %>
+    <div class="col-md-6 col-md-offset-1">
+    <%= form.datetime_select(:show_datetime, {:order => [:year, :month, :day ],:discard_hour => true }, {:style => 'color:blue; font-size: 20px; display: inline;'}) %>
+    </div>
+    <div class="col-md-3" style="font-size: 20px; display: inline; margin-left: -50px;" >
+      <%= form.select(:time, options_for_select(@hours_avail_on_view, prompt: "hour")) %>
+    </div> 
+    <div class="col-md-2" style="font-size: 20px; display: inline; margin-left: -230px">
+      <%= form.select(:duration, options_for_select([["00",00],["15", 15], ["30", 30],["45", 45]], 0), prompt: "minute") %>
+    </div>  
+  <% end %>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-2">
+  <div class="field">
+    <%= form.label :org, "Organization" %>
+    <%= form.text_field :org, class: 'form-control' %>
+  </div>
+    <%= form.hidden_field :month, :value => @showtime.month %>
+    <%= form.hidden_field :day, :value => @showtime.day %>
+    <%= form.hidden_field :year, :value => @showtime.year %>
+  <div class="field">
+    <%= form.label :town %>
+    <%= form.text_field :town, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :street %>
+    <%= form.text_field :street, class: 'form-control' %>
+  </div>
+  </div>
+
+  <div class="col-md-6">
+  <div class="field">
+    <%= form.label :name, 'Contact Name' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: 'form-control', id: :showtime_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.telephone_field :phone, class: 'form-control' %>
+    <!--<%= form.text_field :phone, id: :showtime_phone %>-->
+  </div>
+  </div>
+</div>
+
+
+
+<div class="row">    
+  <div class="col-md-4 col-md-offset-2">
+    <div>
+    <strong>Enter a Picture/Comment if you like</strong>
+    </div>
+    <div class="field">
+      <%= form.text_area :content, placeholder: "The show must go on..." %>
+      <span class="pic">
+        <%= form.file_field :pic, accept: 'image/jpeg,image/gif,image/png' %>
+        <script type="text/javascript">
+        $('#showtime_pic').bind('change', function() {
+        var size_in_megabytes = this.files[0].size/1024/1024;
+        if (size_in_megabytes > 5) {
+          alert('Maximum file size is 5MB. Please choose a smaller file.');
+        }
+        });
+        </script> 
+      </span>
+    </div>
+  </div>
+  
+  
+  <div class="col-md-6">
+    <div class="actions">
+      <%= form.submit yield(:button_text), class: "btn btn-primary"  %>
+    </div>
+  </div> 
+</div>
+
+<% end %>
+
+
+
+

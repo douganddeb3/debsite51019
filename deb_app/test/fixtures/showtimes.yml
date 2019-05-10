@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org: MyString
+  town: MyString
+  street: MyString
+  name: MyString
+  email: MyString@email.com
+  phone: 9999999999
+  month: 1
+  day: 1
+  time: 13
+  duration: 0
+  show_datetime: 2018-11-27 19:45:20
+  radio_time: 1
+  show_datetime_end: 2018-11-27 19:45:20
+  been_update: false
+  pic: MyString
+  content: MyString
+  user: archer
+
+two:
+  org: MyString
+  town: MyString
+  street: MyString
+  name: MyString
+  email: MyString
+  phone: MyString
+  month: 1
+  day: 1
+  time: 1
+  duration: 1
+  show_datetime: 2018-11-27 19:45:20
+  radio_time: 1
+  show_datetime_end: 2018-11-27 19:45:20
+  been_update: false
+  pic: MyString
+  content: MyString
+  

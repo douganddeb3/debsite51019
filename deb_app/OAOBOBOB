@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/ec2-user/environment/deb_app/app/controllers/showtimes_controller.rb @ line 110 ShowtimesController#update:
+
+    [1;34m105[0m:     @times_display = avail_times_to_ampm(@times)
+    [1;34m106[0m:     @hours_avail_on_view = @times_display.zip(@times)
+    [1;34m107[0m:     @showtime.update(showtime_params)
+    [1;34m108[0m:     @showtime.update_attribute([33m:show_datetime[0m, @showtime.show_datetime.change([35mhour[0m: @showtime.time, [35mmin[0m: @showtime.duration))
+    [1;34m109[0m:     @current_day = @showtime.show_datetime.strftime([31m[1;31m"[0m[31m%d[1;31m"[0m[31m[0m).to_i
+ => [1;34m110[0m:     binding.pry
+    [1;34m111[0m:     
+    [1;34m112[0m:     [32mif[0m available_time?(@showtime)
+    [1;34m113[0m:       respond_to [32mdo[0m |format|
+    [1;34m114[0m:         [32mif[0m @showtime.save [1;34m#update(showtime_params)[0m
+    [1;34m115[0m:           @showtime.update_attribute([33m:show_datetime[0m, @showtime.show_datetime.change([35mhour[0m: @showtime.time, [35mmin[0m: @showtime.duration))
+

@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+<h1><%= @showtime.show_datetime.strftime("%A %B %-d, %Y") %></h1>
+<h2><%= @showtime.show_datetime.strftime("%l:%M %p") %> - <%= @showtime.show_datetime_end.strftime("%l:%M %p") %></h2>
+
+<div class="row">
+  <div class="col-md-3 col-md-offset-3">
+    <p>
+      <strong>Org:</strong>
+      <%= @showtime.org %>
+    </p>
+    
+    <p>
+      <strong>Town:</strong>
+      <%= @showtime.town %>
+    </p>
+    
+    <p>
+      <strong>Street:</strong>
+      <%= @showtime.street %>
+    </p>
+  </div>
+ 
+  <div class="col-md-6">
+    <p>
+      <strong>Name:</strong>
+      <%= @showtime.name %>
+    </p>
+    
+    <p>
+      <strong>Email:</strong>
+      <%= @showtime.email %>
+    </p>
+    
+    <p>
+      <strong>Phone:</strong>
+      <%= @showtime.phone %>
+    </p>
+  </div>
+</div>  
+<div class="col-md-3 col-md-offset-3">
+    
+  <p>
+    <strong>Pic:</strong>
+    <%= @showtime.pic %>
+  </p>
+  
+  <p>
+    <strong>Content:</strong>
+    <%= @showtime.content %>
+  </p>
+  
+
+<%= link_to 'Edit/Update', edit_showtime_path(@showtime), class:"link-to-text-color" %> |
+<%= link_to 'Back', showtimes_path, class:"link-to-text-color" %>
+</div>
+

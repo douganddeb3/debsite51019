@@ -1,0 +1,80 @@
+<% 
+
+monthNum = @current_month.mon
+year_now = @current_month.year
+date = Date.new(year_now,1,1) 
+thisDate = date >> monthNum - 1  # get date of first day of current month/year
+ %>
+<div class="col-md-4 col-md-offset-0">
+<% 1.times do |i| 
+nextMon = @current_month >> i %>
+<table border="2px" class="table-condensed" >
+  <tr>
+    <td colspan="7">Select A Date For Your Show</td>
+  </tr>
+  <tr>
+    <td colspan="1"><%= link_to '<', root_path(passYear: (@current_month.month == 1 ? -1 : 0) + @current_month.year, passMonth: (@current_month.month == 1 ? 12 : @current_month.month - 1)), class: 'link-to-text-color' %></td>
+    <td colspan="5" align="center"><%= nextMon.strftime("%B, %Y") %></td>
+    <td colspan="1"><%= link_to '>', root_path(passYear: (@current_month.month == 12 ? 1 : 0) + @current_month.year, passMonth: (@current_month.month % 12 + 1)), class: 'link-to-text-color' %></td>
+  </tr>
+  <tr><th>Su</th>
+      <th>M</th>
+      <th>T</th>
+      <th>W</th>
+      <th>Th</th>
+      <th>F</th>
+      <th>Sa</th>
+  </tr>
+  
+  <tr>
+    <% dayAt = nextMon %>
+    <% j = (nextMon.cwday)%7 %>
+    <% j.times do  %>
+    <td>-</td>
+    <% end %>
+    <% k = 7 - j %>
+    <% k.times do |dayNum| %>
+      
+      <% dayWM = dayAt.strftime("%A %B %-d, %Y") %>
+      <% dayPass = dayAt.strftime("%d") %>
+      <% yearPass = dayAt.strftime("%Y") %>
+      <% tempMonth = dayAt.strftime("%m") %>
+      
+      <!--<td><%= link_to "#{dayAt.mday}", new_showtime_path( day_pass: "#{dayPass}",year_pass: "#{yearPass}",dayHidden: "#{dayWM}", month_pass: "#{tempMonth}"), class: 'link-to-text-color' %></td>-->
+      <td><%= link_to "#{dayAt.mday}", new_showtime_path( :showtime => {:day => "#{dayPass}",:year => "#{yearPass}", :month => "#{tempMonth}"}), class: 'link-to-text-color' %></td>
+      <% dayAt = dayAt + 1 %>
+    <% end %>
+  </tr>
+  
+  <% 5.times do %>
+  <tr>
+    
+  <% 7.times do |n|  %>
+    
+    <% break if dayAt.mday == 1 %>
+    
+    <% dayWM = dayAt.strftime("%A %B %-d, %Y") %>
+    <% tempMonth = dayAt.strftime("%m") %>
+    <% dayPass = dayAt.strftime("%d") %>
+    <% yearPass = dayAt.strftime("%Y") %>
+    
+    
+    <!--<td><%= link_to "#{dayAt.mday}", new_showtime_path(day_pass: "#{dayPass}",year_pass: "#{yearPass}",dayHidden: "#{dayWM}", month_pass: "#{tempMonth}"), class: 'link-to-text-color' %></td>-->
+    <td><%= link_to "#{dayAt.mday}", new_showtime_path( :showtime => {:day => "#{dayPass}",:year => "#{yearPass}", :month => "#{tempMonth}"}), class: 'link-to-text-color' %></td>
+    
+    <% dayAt = dayAt + 1  %>
+      <% if dayAt.mday == 1 %>
+      <% (6 - n).times do |x| %>
+      <td>-</td>
+      <% end %>
+      <% end %>
+  <% end %>  
+  </tr>
+  <% end %>
+  
+</table>
+
+<% end %>
+
+</div>
+<%= yield %>

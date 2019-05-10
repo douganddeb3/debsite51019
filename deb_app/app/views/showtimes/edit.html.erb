@@ -1,0 +1,20 @@
+
+  <div> 
+    <h1 >Showtime-<%= @showtime.show_datetime.strftime("%A %B %-d, %Y") %> </h1>
+    <h2><%= @showtime.show_datetime.strftime("%l:%M %p") %> - <%= @showtime.show_datetime_end.strftime("%l:%M %p") %></h2>
+    <h2>Times Available Today</h2>
+    <h2>
+      <% @times_display.each do |i| %>
+        <span><%= i %> </span>
+      <% end %>
+    </h2>
+    
+    <%= render 'form', showtime: @showtime %>
+    
+    <%= link_to 'Show', @showtime %> |
+    <%= link_to 'Back', root_path %>
+  </div>
+  
+  
+
+    
